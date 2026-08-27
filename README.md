@@ -1,6 +1,4 @@
-# 🎵 Groove Analytics Lab — Spotify Dataset Analytics
-
-O **Groove Analytics Lab** é uma plataforma analítica interativa construída para explorar, correlacionar e visualizar características de mais de **89.400 faixas**, **113 gêneros musicais** e **31.300+ artistas** do ecossistema Spotify.
+<img width="1354" height="167" alt="Captura de tela de 2026-08-27 19-06-34" src="https://github.com/user-attachments/assets/cadcc9ab-c61a-482b-8e07-aa981c8a841e" />
 
 ---
 
