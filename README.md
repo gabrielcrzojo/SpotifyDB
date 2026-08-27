@@ -16,15 +16,21 @@ O **Groove Analytics Lab** é uma plataforma analítica interativa construída p
 - **Leaderboard de Gêneros**: Ranking interativo dos gêneros musicais com alternância de métricas (*Popularidade*, *Dançabilidade*, *Energia*, *Valência*, *Volume de faixas*).
 
 ### 2. 🧬 Perfil Acústico dos Gêneros (Genre Audio DNA)
+<img width="1354" height="519" alt="Captura de tela de 2026-08-27 17-03-44" src="https://github.com/user-attachments/assets/5c05f1c9-bb93-42c5-97b4-3d26e1f71425" />
+
 - Gráfico de **Radar Multi-Gênero** comparando até 5 gêneros simultaneamente em 7 dimensões acústicas normalizadas (0.0 a 1.0).
 - Cards comparativos com destaques de popularidade, BPM médio, energia e positividade (*valence*).
 
 ### 3. 👑 Hall da Fama dos Artistas (Top Artists)
+<img width="1354" height="334" alt="Captura de tela de 2026-08-27 17-01-05" src="https://github.com/user-attachments/assets/79371825-9514-450d-9111-69b93e1e47eb" />
+
 - Ranking dos artistas mais influentes e prolíficos da base de dados.
 - Ordenação por **Maior Popularidade Média** ou **Maior Volume de Faixas**.
 - Tags de gêneros principais e barras visuais de características sonoras.
 
 ### 4. 🔍 Explorador de Faixas (Track Explorer)
+<img width="1354" height="363" alt="Captura de tela de 2026-08-27 16-59-48" src="https://github.com/user-attachments/assets/a56fc6e4-3512-4896-bbcf-2442407daa9b" />
+
 - Tabela interativa com **busca em tempo real (debounced)** por nome, artista ou álbum.
 - **Ordenação por Colunas**: Clique nos cabeçalhos para ordenar de forma ascendente ou descendente.
 - **Filtros por Gênero e Conteúdo Explícito**.
@@ -108,7 +114,7 @@ SpotifyDS/
 Abra o terminal na pasta `groove-analytics-lab`:
 
 ```bash
-cd /home/gabriel/SpotifyDS/groove-analytics-lab
+cd /home/user/SpotifyDS/groove-analytics-lab
 
 # Instalar dependências do frontend
 npm install
@@ -125,14 +131,14 @@ Você precisará de dois terminais (ou executar um em background):
 
 #### Terminal 1 — Backend (Porta 3001):
 ```bash
-cd /home/gabriel/SpotifyDS/groove-analytics-lab
+cd /home/user/SpotifyDS/groove-analytics-lab
 npm run server
 ```
 > O servidor carregará e normalizará os dados do dataset e exibirá: `Server running on port 3001`.
 
 #### Terminal 2 — Frontend (Vite):
 ```bash
-cd /home/gabriel/SpotifyDS/groove-analytics-lab
+cd /home/user/SpotifyDS/groove-analytics-lab
 npm run dev
 ```
 > O Vite iniciará o servidor de desenvolvimento (geralmente em `http://localhost:5173`). Abra o link no seu navegador.
@@ -144,7 +150,7 @@ npm run dev
 Para verificar os tipos e compilar os artefatos de produção otimizados:
 
 ```bash
-cd /home/gabriel/SpotifyDS/groove-analytics-lab
+cd /home/user/SpotifyDS/groove-analytics-lab
 npm run build
 ```
 
