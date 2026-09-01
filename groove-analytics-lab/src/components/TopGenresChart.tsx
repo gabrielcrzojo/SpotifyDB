@@ -5,7 +5,7 @@ import { useApi } from '../hooks/useApi';
 import { LoadingSkeleton, ErrorState } from './Shared';
 
 export const TopGenresChart: React.FC = () => {
-  const [limit, setLimit] = useState(12);
+  const [limit, setLimit] = useState(10);
   const [metric, setMetric] = useState<'avgPopularity' | 'avgDanceability' | 'avgEnergy' | 'avgValence' | 'trackCount'>('avgPopularity');
   
   const { data, loading, error, refetch } = useApi(() => api.getTopGenres(50), []);
@@ -101,9 +101,9 @@ export const TopGenresChart: React.FC = () => {
         </div>
       </div>
       
-      <div style={{ flex: 1, height: '360px', width: '100%' }}>
+      <div style={{ flex: 1, minHeight: `${Math.max(360, limit * 35)}px`, width: '100%' }}>
         <ResponsiveContainer width="100%" height="100%">
-          <BarChart data={sortedData} layout="vertical" margin={{ top: 5, right: 30, left: 70, bottom: 5 }}>
+          <BarChart data={sortedData} layout="vertical" margin={{ top: 5, right: 30, left: 100, bottom: 5 }}>
             <defs>
               <linearGradient id="genreBarGradient" x1="0" y1="0" x2="1" y2="0">
                 <stop offset="0%" stopColor="var(--color-primary)" />
@@ -121,7 +121,7 @@ export const TopGenresChart: React.FC = () => {
               dataKey="genre" 
               type="category" 
               stroke="var(--color-text-primary)" 
-              width={90} 
+              width={120} 
               tick={{ fill: 'var(--color-text-secondary)', fontSize: 12 }} 
               tickFormatter={(value) => typeof value === 'string' ? value.charAt(0).toUpperCase() + value.slice(1) : value}
             />
@@ -137,4 +137,3 @@ export const TopGenresChart: React.FC = () => {
     </div>
   );
 };
-
