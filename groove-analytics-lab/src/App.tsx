@@ -64,10 +64,8 @@ function App() {
             <ScatterPlot onSelectTrack={(id) => setSelectedTrackId(id)} />
             <ExplicitComparison />
           </div>
-          
-          <div className="grid grid-cols-1 gap-6">
-            <TopGenresChart />
-          </div>
+
+          <TopGenresChart />
 
           <TrackTable onRowClick={(id) => setSelectedTrackId(id)} />
         </div>
