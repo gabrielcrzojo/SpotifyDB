@@ -38,9 +38,9 @@ const selectStyle: React.CSSProperties = {
 };
 
 export const TopGenresChart: React.FC = () => {
-  const [limit, setLimit] = useState(10);
-  const [metric, setMetric] = useState<MetricKey>('avgPopularity');
-
+  const [limit, setLimit] = useState(12);
+  const [metric, setMetric] = useState<'avgPopularity' | 'avgDanceability' | 'avgEnergy' | 'avgValence' | 'trackCount'>('avgPopularity');
+  
   const { data, loading, error, refetch } = useApi(() => api.getTopGenres(50), []);
 
   const isNormalized = ['avgDanceability', 'avgEnergy', 'avgValence'].includes(metric);
@@ -114,15 +114,10 @@ export const TopGenresChart: React.FC = () => {
           </select>
         </div>
       </div>
-
-      {/* Chart — fixed pixel height so ResponsiveContainer never collapses */}
-      <div style={{ width: '100%', height: chartHeight }}>
+      
+      <div style={{ flex: 1, height: '360px', width: '100%' }}>
         <ResponsiveContainer width="100%" height="100%">
-          <BarChart
-            data={sortedData}
-            layout="vertical"
-            margin={{ top: 5, right: 30, left: 10, bottom: 5 }}
-          >
+          <BarChart data={sortedData} layout="vertical" margin={{ top: 5, right: 30, left: 70, bottom: 5 }}>
             <defs>
               <linearGradient id="genreBarGradient" x1="0" y1="0" x2="1" y2="0">
                 <stop offset="0%" stopColor="var(--color-primary)" />
@@ -136,17 +131,13 @@ export const TopGenresChart: React.FC = () => {
               stroke="var(--color-text-secondary)"
               tickFormatter={(v) => (isNormalized ? v.toFixed(1) : String(v))}
             />
-            <YAxis
-              dataKey="genre"
-              type="category"
-              stroke="var(--color-text-primary)"
-              width={120}
-              tick={{ fill: 'var(--color-text-secondary)', fontSize: 12 }}
-              tickFormatter={(value) =>
-                typeof value === 'string'
-                  ? value.charAt(0).toUpperCase() + value.slice(1)
-                  : value
-              }
+            <YAxis 
+              dataKey="genre" 
+              type="category" 
+              stroke="var(--color-text-primary)" 
+              width={90} 
+              tick={{ fill: 'var(--color-text-secondary)', fontSize: 12 }} 
+              tickFormatter={(value) => typeof value === 'string' ? value.charAt(0).toUpperCase() + value.slice(1) : value}
             />
             <Tooltip content={<CustomTooltip />} cursor={{ fill: 'rgba(255,255,255,0.05)' }} />
             <Bar dataKey={metric} radius={[0, 4, 4, 0]} barSize={18} fill="url(#genreBarGradient)">
