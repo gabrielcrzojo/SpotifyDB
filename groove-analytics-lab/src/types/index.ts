@@ -119,3 +119,29 @@ export interface PaginatedResponse<T> {
   totalItems: number;
 }
 
+export interface PopularityPredictInput {
+  energy: number;
+  danceability: number;
+  liveness: number;
+  valence: number;
+  duration_ms: number;
+  acousticness: number;
+  track_genre: string;
+}
+
+export interface PopularityPredictResult {
+  predicted: number;
+  mae: number;
+  range_low: number;
+  range_high: number;
+  range_label: string;
+  modelo: string;
+}
+
+export interface PopularityModelMeta {
+  modelo: string;
+  mae: number;
+  numeric_feature_cols: string[];
+  genres: string[];
+}
+

@@ -8,10 +8,14 @@ import {
   GenreItem,
   Track,
   PaginatedResponse,
-  SummaryStats
+  SummaryStats,
+  PopularityPredictInput,
+  PopularityPredictResult,
+  PopularityModelMeta,
 } from '../types';
 
-const BASE_URL = 'http://localhost:3001/api';
+const BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001/api';
+const ML_URL = import.meta.env.VITE_ML_URL || 'http://localhost:8000';
 
 async function fetchApi<T>(endpoint: string, params?: Record<string, string | number | boolean | undefined>): Promise<T> {
   let url = `${BASE_URL}${endpoint}`;
@@ -75,6 +79,31 @@ export const api = {
     fetchApi<PaginatedResponse<Track>>('/tracks', params),
     
   getTrackById: (id: string) => 
-    fetchApi<Track>(`/tracks/${id}`)
+    fetchApi<Track>(`/tracks/${id}`),
+
+  getPopularityMeta: async () => {
+    const response = await fetch(`${ML_URL}/meta`);
+    if (!response.ok) {
+      const payload = await response.json().catch(() => ({}));
+      throw new Error(payload.detail || `API Error: ${response.status}`);
+    }
+    return response.json() as Promise<PopularityModelMeta>;
+  },
+
+  predictPopularity: async (body: PopularityPredictInput) => {
+    const response = await fetch(`${ML_URL}/predict`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
+    });
+    if (!response.ok) {
+      const payload = await response.json().catch(() => ({}));
+      const detail = payload.detail;
+      throw new Error(
+        typeof detail === 'string' ? detail : `API Error: ${response.status}`
+      );
+    }
+    return response.json() as Promise<PopularityPredictResult>;
+  },
 };
 

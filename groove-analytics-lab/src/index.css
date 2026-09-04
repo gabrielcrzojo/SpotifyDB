@@ -178,3 +178,15 @@ p { color: var(--color-text-secondary); }
   color: #86efac;
   border: 1px solid rgba(29, 185, 84, 0.3);
 }
+
+input[type="range"] {
+  accent-color: var(--color-primary);
+}
+
+/* O <select> fechado fica claro no tema escuro, mas a lista nativa do Windows
+   herda color: white do body e some no fundo branco. */
+select option,
+select optgroup {
+  color: #111827;
+  background-color: #ffffff;
+}

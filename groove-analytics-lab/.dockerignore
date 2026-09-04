@@ -1,0 +1,8 @@
+node_modules
+backend/node_modules
+backend/data
+ml-api
+dist
+.git
+*.md
+catboost_info

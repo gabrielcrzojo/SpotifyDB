@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "server": "node backend/server.js",
+    "ml-api": "python -m uvicorn main:app --reload --port 8000 --app-dir ml-api",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"

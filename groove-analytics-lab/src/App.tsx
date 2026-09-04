@@ -8,9 +8,10 @@ import { GenreComparisonRadar } from './components/GenreComparisonRadar';
 import { TopArtistsLeaderboard } from './components/TopArtistsLeaderboard';
 import { TrackTable } from './components/TrackTable';
 import { TrackModal } from './components/TrackModal';
-import { LayoutDashboard, Sliders, Award, Disc3 } from 'lucide-react';
+import { PredictPopularity } from './components/PredictPopularity';
+import { LayoutDashboard, Sliders, Award, Disc3, Sparkles } from 'lucide-react';
 
-type TabType = 'overview' | 'genre-dna' | 'artists' | 'tracks';
+type TabType = 'overview' | 'genre-dna' | 'artists' | 'tracks' | 'predict';
 
 function App() {
   const [activeTab, setActiveTab] = useState<TabType>('overview');
@@ -21,6 +22,7 @@ function App() {
     { id: 'genre-dna', label: 'Genre Audio DNA', icon: <Sliders size={18} /> },
     { id: 'artists', label: 'Top Artists', icon: <Award size={18} /> },
     { id: 'tracks', label: 'Track Explorer', icon: <Disc3 size={18} /> },
+    { id: 'predict', label: 'Predict Popularity', icon: <Sparkles size={18} /> },
   ];
 
   return (
@@ -54,8 +56,7 @@ function App() {
         ))}
       </div>
 
-      {/* Global KPICards */}
-      <KPICards />
+      {activeTab !== 'predict' && <KPICards />}
 
       {/* Tab 1: Overview & Analytics */}
       {activeTab === 'overview' && (
@@ -90,6 +91,13 @@ function App() {
       {activeTab === 'tracks' && (
         <div className="flex flex-col gap-6 animate-fade-in">
           <TrackTable onRowClick={(id) => setSelectedTrackId(id)} />
+        </div>
+      )}
+
+      {/* Tab 5: Predict popularity */}
+      {activeTab === 'predict' && (
+        <div className="flex flex-col gap-6 animate-fade-in">
+          <PredictPopularity />
         </div>
       )}
 
